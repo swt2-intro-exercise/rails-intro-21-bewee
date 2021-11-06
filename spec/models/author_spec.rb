@@ -12,4 +12,16 @@ RSpec.describe Author, type: :model do
     author = build :author
     expect(author.name).to eq("Alan Turing")
   end
+  
+  it "should reject invalid values" do
+    author = Author.new(first_name: nil, last_name: "Turing", homepage: "http://wikipedia.de/Alan_Turing")
+    expect(author).to_not be_valid
+    author = Author.new(first_name: "A", last_name: "Turing", homepage: "http://wikipedia.de/Alan_Turing")
+    expect(author).to_not be_valid
+  end
+
+  it "should accept valid values" do
+    author = build :author
+    expect(author).to be_valid
+  end
 end
