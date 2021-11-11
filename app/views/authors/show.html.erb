@@ -14,3 +14,4 @@
 </p>
 
 <%= link_to 'Edit author', edit_author_path(@author) %>
+<%= link_to 'Destroy author', author_path(@author), method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy' %>
