@@ -12,6 +12,7 @@ describe "Authors page", type: :feature do
       expect(page).to have_content author.name
       expect(page).to have_link 'Show', href: author_path(author)
       expect(page).to have_link 'Edit', href: edit_author_path(author)
+      expect(page).to have_link 'Destroy', href: author_path(author)
     end
   end
 
