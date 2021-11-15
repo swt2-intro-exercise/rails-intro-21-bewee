@@ -24,4 +24,9 @@ RSpec.describe Author, type: :model do
     author = build :author
     expect(author).to be_valid
   end
+
+  it "should have an empty list of papers" do
+    author = build :author
+    expect(author.papers).to eq([])
+  end
 end
