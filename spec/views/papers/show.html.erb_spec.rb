@@ -15,4 +15,12 @@ RSpec.describe "papers/show", type: :view do
     expect(rendered).to match(/Venue/)
     expect(rendered).to match(/2/)
   end
+  
+  it "should render the author's full name" do
+    @author = build :author
+    @author.papers << @paper
+    @author.save
+    render
+    expect(rendered).to match(/Alan Turing/)
+  end
 end
