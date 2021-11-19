@@ -16,9 +16,11 @@ RSpec.describe "/papers", type: :request do
   
   # Paper. As you add validations to Paper, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { {
+    title: 'a_title',
+    venue: 'a_venue',
+    year: 4242,
+  } }
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
@@ -29,6 +31,14 @@ RSpec.describe "/papers", type: :request do
       Paper.create! valid_attributes
       get papers_url
       expect(response).to be_successful
+    end
+
+    it "filters papers if year param is present" do
+      Paper.create! valid_attributes
+      get papers_url(year: 4242)
+      expect(response.body).to include('a_title')
+      get papers_url(year: 4243)
+      expect(response.body).not_to include('a_title')
     end
   end
 
