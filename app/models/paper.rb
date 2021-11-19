@@ -3,4 +3,5 @@ class Paper < ApplicationRecord
   validates :venue, presence: true
   validates :year, presence: true, numericality: true
   has_and_belongs_to_many :authors
+  scope :from_year, ->(year) { where("year = ?", year) }
 end
